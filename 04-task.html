@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 04</title>
+</head>
+
+<body>
+    <script>
+        /*
+        Завдання:
+        Напишіть сценарій, який виконує запит GET за адресою https://jsonplaceholder.typicode.com/todos
+        і виводить вміст відповіді у вигляді таблиці.
+        */
+      
+    
+        let url = "https://jsonplaceholder.typicode.com/todos";
+
+        let request = new Request(url)
+
+        fetch(request)
+            .then(response => {
+             return response.json()
+             
+            })
+
+            .then(data =>{
+                console.log(data)
+                 const table = document.createElement("table");
+                 table.classList.add("table", "table-bordered", "table-striped");
+                   for ( let tab of data) {  
+                     let row = table.insertRow();
+                     let idCell = row.insertCell();
+                     let titleCell = row.insertCell();
+                     let completedCell = row.insertCell();
+ 
+                     idCell.innerHTML = tab.id;
+                     titleCell.innerHTML = tab.title;
+                     completedCell.innerHTML = tab.completed ? "Completed" : "Not Completed";
+                    }
+
+             return document.body.appendChild(table);
+            });
+
+    </script>
+</body>
+
+</html>

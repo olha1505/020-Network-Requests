@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 03</title>
+</head>
+
+<body>
+    <div id="image-container"></div>
+    <script>
+        
+        /*
+        Завдання:
+        Напишіть сценарій, який під час завантаження сторінки виконає GET-запит на https://jsonplaceholder.typicode.com/photos
+        і виведе на сторінку всі зображення у вигляді <img>, які будуть отримані у відповіді.
+        */
+       function fetchImage(){
+         let url = "https://jsonplaceholder.typicode.com/photos";
+         let div = document.querySelector("div");
+         div.innerHTML = "";
+         fetch(url)
+            .then(response =>response.json())
+            .then(data => {
+                let imageUrl = data[0].url;
+                let imageElement = document.createElement("img");
+                imageElement.src = imageUrl;
+                div.appendChild(imageElement);
+            } );
+        }
+      
+       document.body.addEventListener("click", fetchImage());
+       
+       
+    </script>
+</body>
+
+</html>
